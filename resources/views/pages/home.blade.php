@@ -1,4 +1,4 @@
-<x-layouts::app title="Home">
+<x-layouts.app title="Home">
     <div class="max-w-3xl mx-auto py-12 space-y-6">
         <h1 class="text-3xl font-bold">Procurement Request Tracker</h1>
         <p class="text-lg">
@@ -15,4 +15,4 @@
             <a href="{{ route('login') }}" class="underline">Log in</a>
         </div>
     </div>
-</x-layouts::app>
+</x-layouts.app>

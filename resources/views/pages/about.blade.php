@@ -1,4 +1,4 @@
-<x-layouts::app title="About">
+<x-layouts.app title="About">
     <div class="max-w-3xl mx-auto py-12 space-y-4">
         <h1 class="text-3xl font-bold">About this project</h1>
         <p>
@@ -15,4 +15,4 @@
             Categories, and Blade templates for the interface.
         </p>
     </div>
-</x-layouts::app>
+</x-layouts.app>
