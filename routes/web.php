@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Controllers\Admin\RequestController as AdminRequestController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Support\Facades\Route;
@@ -17,9 +19,11 @@ Route::middleware(['auth', 'verified', 'role:manager,admin'])
     ->prefix('admin')
     ->name('admin.')
     ->group(function () {
-        Route::get('/dashboard', function () {
-            return 'Admin area reached. Dashboard comes in Step 8.';
-        })->name('dashboard');
+        Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+        Route::get('/requests', [AdminRequestController::class, 'index'])->name('requests.index');
+        Route::get('/requests/{request}', [AdminRequestController::class, 'show'])->name('requests.show');
+        Route::patch('/requests/{request}/approve', [AdminRequestController::class, 'approve'])->name('requests.approve');
+        Route::patch('/requests/{request}/reject', [AdminRequestController::class, 'reject'])->name('requests.reject');
     });
 
 require __DIR__.'/settings.php';
