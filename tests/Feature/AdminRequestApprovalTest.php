@@ -21,7 +21,10 @@ it('lets a manager approve a pending request', function () {
         ->patch("/admin/requests/{$request->id}/approve")
         ->assertRedirect();
 
-    expect($request->fresh()->status)->toBe('approved');
+    expect($request->fresh()->status)->toBe('approved')
+        ->and($request->fresh()->approved_by)->toBe($manager->id)
+        ->and($request->fresh()->decided_at)->not->toBeNull()
+        ->and($request->fresh()->approver->name)->toBe($manager->name);
 });
 
 it('stops an employee approving anything', function () {

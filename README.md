@@ -51,6 +51,12 @@ owner, category, and outcome.
 | request_date | date | |
 | user_id | foreign key | the employee who raised it |
 | category_id | foreign key | the category it belongs to |
+| approved_by | nullable foreign key | the manager or admin who decided the request |
+| decided_at | nullable timestamp | when the request was approved or rejected |
+
+The `approved_by` and `decided_at` fields were added beyond the original proposal
+to preserve an audit trail of who decided a request and when. This addition was
+raised with the course lecturer.
 
 ### Relationships
 

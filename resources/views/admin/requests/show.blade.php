@@ -8,6 +8,12 @@
 
         <dl class="space-y-2">
             <div><dt class="font-semibold">Status</dt><dd>{{ ucfirst($request->status) }}</dd></div>
+            @if ($request->decided_at)
+                <div>
+                    <dt class="font-semibold">Decision</dt>
+                    <dd>{{ ucfirst($request->status) }} by {{ $request->approver?->name ?? 'a former user' }} on {{ $request->decided_at->format('d M Y \\a\\t H:i') }}</dd>
+                </div>
+            @endif
             <div><dt class="font-semibold">Submitted by</dt><dd>{{ $request->user->name }}</dd></div>
             <div><dt class="font-semibold">Category</dt><dd>{{ $request->category->name }}</dd></div>
             <div><dt class="font-semibold">Quantity</dt><dd>{{ $request->quantity }}</dd></div>

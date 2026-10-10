@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Request;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request as HttpRequest;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 use Symfony\Component\HttpKernel\Exception\HttpException;
 
@@ -37,7 +38,7 @@ class RequestController extends Controller
     public function show(Request $request): View
     {
         return view('admin.requests.show', [
-            'request' => $request->load('user', 'category'),
+            'request' => $request->load('user', 'category', 'approver'),
         ]);
     }
 
@@ -45,7 +46,11 @@ class RequestController extends Controller
     {
         $this->ensurePending($request);
 
-        $request->update(['status' => 'approved']);
+        $request->update([
+            'status' => 'approved',
+            'approved_by' => Auth::id(),
+            'decided_at' => now(),
+        ]);
 
         return back()->with('status', 'Request approved.');
     }
@@ -54,7 +59,11 @@ class RequestController extends Controller
     {
         $this->ensurePending($request);
 
-        $request->update(['status' => 'rejected']);
+        $request->update([
+            'status' => 'rejected',
+            'approved_by' => Auth::id(),
+            'decided_at' => now(),
+        ]);
 
         return back()->with('status', 'Request rejected.');
     }

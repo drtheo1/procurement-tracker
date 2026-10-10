@@ -21,6 +21,8 @@ class Request extends Model
         'quantity',
         'estimated_cost',
         'status',
+        'approved_by',
+        'decided_at',
         'request_date',
         'user_id',
         'category_id',
@@ -31,6 +33,7 @@ class Request extends Model
     {
         return [
             'request_date' => 'date',
+            'decided_at' => 'datetime',
             'estimated_cost' => 'decimal:2',
             'quantity' => 'integer',
         ];
@@ -40,6 +43,12 @@ class Request extends Model
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
+    }
+
+    /** @return BelongsTo<User, $this> */
+    public function approver(): BelongsTo
+    {
+        return $this->belongsTo(User::class, 'approved_by');
     }
 
     /** @return BelongsTo<Category, $this> */

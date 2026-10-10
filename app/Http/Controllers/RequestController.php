@@ -53,7 +53,7 @@ class RequestController extends Controller
     {
         $this->authoriseOwner($request);
 
-        return view('requests.show', ['request' => $request->load('category', 'user')]);
+        return view('requests.show', ['request' => $request->load('category', 'user', 'approver')]);
     }
 
     public function edit(Request $request): View
