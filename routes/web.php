@@ -13,4 +13,13 @@ Route::middleware(['auth', 'verified'])->group(function () {
     Route::resource('requests', RequestController::class);
 });
 
+Route::middleware(['auth', 'verified', 'role:manager,admin'])
+    ->prefix('admin')
+    ->name('admin.')
+    ->group(function () {
+        Route::get('/dashboard', function () {
+            return 'Admin area reached. Dashboard comes in Step 8.';
+        })->name('dashboard');
+    });
+
 require __DIR__.'/settings.php';

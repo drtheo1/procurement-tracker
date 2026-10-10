@@ -17,6 +17,9 @@
             <span class="flex-1"></span>
             @auth
                 <a href="{{ route('dashboard') }}">Dashboard</a>
+                @if (auth()->user()?->canApproveRequests())
+                    <a href="{{ route('admin.dashboard') }}">Admin</a>
+                @endif
             @else
                 <a href="{{ route('login') }}">Log in</a>
                 <a href="{{ route('register') }}">Register</a>
