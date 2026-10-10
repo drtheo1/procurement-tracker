@@ -32,11 +32,35 @@ class RequestSeeder extends Seeder
         ];
 
         foreach ($requests as $index => $request) {
-            Request::create([
+            Request::factory()->create([
                 ...$request,
                 'request_date' => now()->subDays(30 - ($index * 3)),
                 'user_id' => $employees->random()->id,
                 'category_id' => $categories->random()->id,
+            ]);
+        }
+
+        Request::factory()
+            ->count(20)
+            ->recycle($employees)
+            ->recycle($categories)
+            ->create();
+
+        $admin = User::where('email', 'admin@admin.com')->first();
+
+        if ($admin !== null) {
+            Request::factory()
+                ->count(4)
+                ->recycle($categories)
+                ->create(['user_id' => $admin->id]);
+        }
+
+        $approver = User::whereIn('role', ['manager', 'admin'])->first();
+
+        if ($approver !== null) {
+            Request::whereIn('status', ['approved', 'rejected'])->update([
+                'approved_by' => $approver->id,
+                'decided_at' => now()->subDays(2),
             ]);
         }
     }

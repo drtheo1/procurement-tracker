@@ -21,7 +21,7 @@ class UserSeeder extends Seeder
         ];
 
         foreach ($users as $user) {
-            User::create([
+            User::factory()->create([
                 'name' => $user['name'],
                 'email' => $user['email'],
                 'role' => $user['role'],
