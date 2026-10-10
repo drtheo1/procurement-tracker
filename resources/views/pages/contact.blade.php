@@ -3,7 +3,7 @@
         <h1 class="text-3xl font-bold">Contact</h1>
         <p>Questions about this project can go to the project owner.</p>
         <p><strong>Richard Theophilus Dartey</strong></p>
-        <p>Email: rtdartey@gmail.com</p>
+        <p>Email: richardtheophilus.dartey@code.berlin</p>
         <p>CODE University of Applied Sciences, Berlin</p>
     </div>
 </x-layouts.app>
