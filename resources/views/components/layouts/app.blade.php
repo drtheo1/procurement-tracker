@@ -17,8 +17,10 @@
             <span class="flex-1"></span>
             @auth
                 <a href="{{ route('dashboard') }}">Dashboard</a>
+                <a href="{{ route('requests.index') }}">My requests</a>
                 @if (auth()->user()?->canApproveRequests())
                     <a href="{{ route('admin.dashboard') }}">Admin</a>
+                    <a href="{{ route('admin.requests.index') }}">All requests</a>
                 @endif
                 @if (auth()->user()?->isAdmin())
                     <a href="{{ route('admin.users.index') }}">Users</a>

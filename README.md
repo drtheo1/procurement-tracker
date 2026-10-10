@@ -124,6 +124,16 @@ Requirements: PHP 8.3 or higher, Composer, Node.js, Git.
 
 The application is then available at http://localhost:8000
 
+## Demo accounts
+
+After running `php artisan migrate --seed`:
+
+| Role | Email | Password |
+|---|---|---|
+| Admin | admin@example.com | password |
+| Manager | manager@example.com | password |
+| Employee | employee@example.com | password |
+
 ## Quality checks
 
 The full continuous integration chain runs with:
