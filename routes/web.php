@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\RequestController as AdminRequestController;
+use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\RequestController;
 use Illuminate\Support\Facades\Route;
@@ -24,6 +25,13 @@ Route::middleware(['auth', 'verified', 'role:manager,admin'])
         Route::get('/requests/{request}', [AdminRequestController::class, 'show'])->name('requests.show');
         Route::patch('/requests/{request}/approve', [AdminRequestController::class, 'approve'])->name('requests.approve');
         Route::patch('/requests/{request}/reject', [AdminRequestController::class, 'reject'])->name('requests.reject');
+
+        Route::middleware('role:admin')->group(function () {
+            Route::get('/users', [AdminUserController::class, 'index'])->name('users.index');
+            Route::get('/users/{user}/edit', [AdminUserController::class, 'edit'])->name('users.edit');
+            Route::patch('/users/{user}', [AdminUserController::class, 'update'])->name('users.update');
+            Route::delete('/users/{user}', [AdminUserController::class, 'destroy'])->name('users.destroy');
+        });
     });
 
 require __DIR__.'/settings.php';

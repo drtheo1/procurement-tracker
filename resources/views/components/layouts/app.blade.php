@@ -20,6 +20,9 @@
                 @if (auth()->user()?->canApproveRequests())
                     <a href="{{ route('admin.dashboard') }}">Admin</a>
                 @endif
+                @if (auth()->user()?->isAdmin())
+                    <a href="{{ route('admin.users.index') }}">Users</a>
+                @endif
             @else
                 <a href="{{ route('login') }}">Log in</a>
                 <a href="{{ route('register') }}">Register</a>
