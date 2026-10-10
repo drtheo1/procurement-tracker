@@ -18,6 +18,7 @@ owner, category, and outcome.
 - SQLite database
 - Livewire starter kit for authentication
 - Pest for testing, Pint for code style, PHPStan for static analysis
+- Git for version control
 - GitHub Actions for continuous integration
 
 ## Data model
@@ -140,12 +141,13 @@ Completed:
 - Registration, login, logout, and email verification
 - Database schema for users, categories, and requests
 - Eloquent models with relationships
+- Seed data for categories, users, and sample requests
+- Request creation, listing, viewing, editing, and deletion for employees
+- Ownership and status checks so users can only change their own pending requests
 
 In progress:
 
-- Seed data
-- Request creation, listing, editing, and deletion
-- Role based access control
+- Role-based access control
 - Admin dashboard with approve and reject actions
 - User management
 
