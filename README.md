@@ -134,9 +134,12 @@ The application is then available at http://localhost:8000
 
 After running `php artisan migrate --seed`:
 
+The seeded data includes categories, five users across all three roles, and
+roughly thirty requests in mixed states.
+
 | Role | Email | Password |
 |---|---|---|
-| Admin | admin@example.com | password |
+| Admin | admin@admin.com | password |
 | Manager | manager@example.com | password |
 | Employee | employee@example.com | password |
 
